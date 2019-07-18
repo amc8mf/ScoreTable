@@ -29,23 +29,46 @@ usersCollection.forEach((user) => {
   user.set('averageScore', calculateAverageScore(user.id));
 });
 
+Backgrid.CustomHeaderCell = Backgrid.HeaderCell.extend({
+ className: 'custom-html-header-cell',
+ render: function() {
+   this.$el.empty();
+   var column = this.column;
+   var sortable = Backgrid.callByNeed(column.sortable(), column, this.collection);
+   var label;
+   if(sortable){
+     label = $("<button>").html(column.get("label")).append("<span class='sort-caret' aria-hidden='true'></span>");
+   } else {
+     label = document.createTextNode(column.get("label"));
+   }
+   this.$el.append(label);
+   this.$el.addClass(column.get("name"));
+   this.$el.addClass(column.get("direction"));
+   this.delegateEvents();
+   return this;
+ }
+})
+
 const columns = [{
-    name: "id",
-    label: "ID",
+    name: 'id',
+    label: 'ID',
     editable: false,
     cell: 'string',
+    headerCell: 'custom'
 	},
 	{
-    name: "name",
-    label: "Name",
+    name: 'name',
+    label: 'Name',
     editable: false,
     cell: 'string',
+    headerCell: 'custom'
 	},
 	{
-    name: "averageScore",
-    label: "Average Score",
+    name: 'averageScore',
+    label: 'Average Score',
     editable: false,
     cell: 'number',
+    headerCell: 'custom'
 	}
 ];
 
@@ -56,7 +79,7 @@ const grid = new Backgrid.Grid({
 });
 
 $(document).ready(function() {
-	$(".grid").append(grid.render().el);
+	$('.grid').append(grid.render().el);
   // adding some bootstrap classes for styling
   $('button').addClass('btn-xs btn-primary');
 });
