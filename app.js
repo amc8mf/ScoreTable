@@ -1,6 +1,6 @@
 const data = require('./data.json');
-const Backbone = require('Backbone');
-const Backgrid = require('Backgrid');
+const Backbone = require('backbone');
+const Backgrid = require('backgrid');
 const $ = require('jquery');
 
 var calculateAverageScore = (userId) => {
