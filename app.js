@@ -1,7 +1,7 @@
 const data = require('./data.json');
-var Backbone = require('Backbone');
-var Backgrid = require('Backgrid');
-var $ = require('jquery');
+const Backbone = require('Backbone');
+const Backgrid = require('Backgrid');
+const $ = require('jquery');
 
 var calculateAverageScore = (userId) => {
   // First step is to filter scores based on the user id, then grab the score value from the object, 
@@ -10,13 +10,14 @@ var calculateAverageScore = (userId) => {
     return scoreObj.user_id === userId;
   });
 
-  let scoreTotal = userScores.map((scoreObj) => {
-    return scoreObj.score;
-  }).reduce((acc, scoreValue) => {
-    return acc + scoreValue;
-  })
-  
-  return scoreTotal / userScores.length;
+  if (userScores) { 
+    let scoreTotal = userScores.map((scoreObj) => {
+      return scoreObj.score;
+    }).reduce((acc, scoreValue) => {
+      return acc + scoreValue;
+    })
+    return scoreTotal / userScores.length;
+  }
 };
 
 //Define collection that will be used to populate grid
@@ -28,7 +29,7 @@ usersCollection.forEach((user) => {
   user.set('averageScore', calculateAverageScore(user.id));
 });
 
-var columns = [{
+const columns = [{
     name: "id",
     label: "ID",
     editable: false,
@@ -49,7 +50,7 @@ var columns = [{
 ];
 
 
-var grid = new Backgrid.Grid({
+const grid = new Backgrid.Grid({
   columns: columns,
   collection: usersCollection
 });
