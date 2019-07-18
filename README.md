@@ -19,7 +19,7 @@ Instructions for running app locally:
 
 Run `node --version` to confirm node is installed
 
-Run `npm install beefy browserify -g`
+Run `npm install -s`
 
 Run `npm start` - a prompt should tell you that beefy is listening to port 9966
 
