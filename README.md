@@ -17,7 +17,7 @@ windows : download installer from https://nodejs.org/en/download/
 
 Instructions for running app locally:
 
-Run 'node --v' to confirm node is installed
+Run `node --version` to confirm node is installed
 
 Run 'npm install beefy browserify -g'
 
