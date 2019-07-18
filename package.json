@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "test": "mocha test.js",
-    "start": "beefy app.js --live"
+    "start": "beefy app.js"
   },
   "dependencies": {
     "assert": "^2.0.0",
