@@ -28,7 +28,12 @@ data.users.forEach((user) => {
 })
 usersCollection.forEach((user) => {
   user.set('averageScore', calculateAverageScore(user.id));
-  user.set('created_at', Moment(user.get('created_at')).format('MMMM D, YYYY'));
+  let date = Moment(user.get('created_at'));
+  if (date.isValid()) {
+    user.set('created_at', Moment(user.get('created_at')).format('MMMM D, YYYY'));
+  } else {
+    user.set('created_at', '')
+  }
 });
 
 
