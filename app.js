@@ -2,6 +2,7 @@ const data = require('./data.json');
 const Backbone = require('backbone');
 const Backgrid = require('backgrid');
 const $ = require('jquery');
+const Moment = require('moment');
 
 var calculateAverageScore = (userId) => {
   // First step is to filter scores based on the user id, then grab the score value from the object, 
@@ -27,48 +28,33 @@ data.users.forEach((user) => {
 })
 usersCollection.forEach((user) => {
   user.set('averageScore', calculateAverageScore(user.id));
+  user.set('created_at', Moment(user.get('created_at')).format('MMMM D, YYYY'));
 });
 
-Backgrid.CustomHeaderCell = Backgrid.HeaderCell.extend({
- className: 'custom-html-header-cell',
- render: function() {
-   this.$el.empty();
-   var column = this.column;
-   var sortable = Backgrid.callByNeed(column.sortable(), column, this.collection);
-   var label;
-   if(sortable){
-     label = $("<button>").html(column.get("label")).append("<span class='sort-caret' aria-hidden='true'></span>");
-   } else {
-     label = document.createTextNode(column.get("label"));
-   }
-   this.$el.append(label);
-   this.$el.addClass(column.get("name"));
-   this.$el.addClass(column.get("direction"));
-   this.delegateEvents();
-   return this;
- }
-})
 
 const columns = [{
     name: 'id',
     label: 'ID',
     editable: false,
-    cell: 'string',
-    headerCell: 'custom'
+    cell: 'string'
 	},
 	{
     name: 'name',
     label: 'Name',
     editable: false,
-    cell: 'string',
-    headerCell: 'custom'
+    cell: 'string'
 	},
+    {
+    name: 'created_at',
+    label: 'Created Date',
+    editable: false,
+    cell: 'string'
+  },
 	{
     name: 'averageScore',
     label: 'Average Score',
     editable: false,
-    cell: 'number',
-    headerCell: 'custom'
+    cell: 'number'
 	}
 ];
 
