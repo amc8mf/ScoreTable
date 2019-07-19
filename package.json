@@ -10,11 +10,11 @@
     "backbone": "1.2.0",
     "backgrid": "0.3.8",
     "beefy": "^2.1.8",
-    "bootstrap": "^4.3.1",
     "browserify": "^16.3.0",
     "jquery": "^3.4.1",
-    "mocha": "^6.1.4",
+    "mocha": "^6.2.0",
     "moment": "^2.24.0",
+    "sweetalert2": "^7.33.1",
     "underscore": "^1.9.1"
   }
 }
