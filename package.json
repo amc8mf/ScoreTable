@@ -15,6 +15,6 @@
     "mocha": "^6.2.0",
     "moment": "^2.24.0",
     "sweetalert2": "^7.33.1",
-    "underscore": "^1.9.1"
+    "underscore": "^1.12.1"
   }
 }
